@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DONG-IL ELECTRIC WIRE CO. LTD.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Palette: Charcoal & Citrus */
+    :root {
+      --bg: #ECEFF1;
+      --card-bg: #FFFFFF;
+      --text-primary: #212121;
+      --text-secondary: #616161;
+      --accent: #2E3B4E;
+      --accent-highlight: #FFB400;
+      --border: #CFD8DC;
+      --hover-bg: #FDF3C1;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1rem;
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 840px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: var(--accent);
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 2px solid var(--accent-highlight);
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    .header h2 {
+      margin: 0.25rem 0 0;
+      font-size: 1rem;
+      color: #ECEFF1;
+      font-weight: 400;
+    }
+    .content {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .field { display: flex; flex-direction: column; }
+    .field label {
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .field select, .field input {
+      padding: 0.45rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fafafa;
+      color: var(--text-primary);
+      transition: border-color 0.2s, background 0.2s;
+      text-align: center;
+    }
+    /* Hours inputs in charcoal & bold */
+    input[type="number"][id^="hrs-"] {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .field select:focus, .field input:focus {
+      border-color: var(--accent-highlight);
+      background: #fff;
+      outline: none;
+    }
+    .table-wrapper {
+      grid-column: 1 / -1;
+      overflow-x: auto;
+      margin-top: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 6px;
+      background: var(--card-bg);
+    }
+    thead th {
+      background: var(--accent-highlight);
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+    th:first-child, td:first-child { text-align: left; }
+    tbody tr:nth-child(odd) { background: #fafafa; }
+    tbody tr:nth-child(even) { background: #f5f7f8; }
+    tbody tr:hover { background: var(--hover-bg); }
+    tbody td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+      font-size: 0.9rem;
+    }
+    tfoot td {
+      padding: 0.75rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+    tfoot td:first-child { text-align: left; }
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      background: var(--accent-highlight);
+      color: var(--text-primary);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      background: #e0a400;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .footer {
+      text-align: center;
+      padding: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 600px) {
+      .content { grid-template-columns: 1fr; }
+      thead th, tbody td, tfoot td {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.85rem;
+      }
+      .actions { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>DONG-IL ELECTRIC WIRE CO. LTD.</h1>
+      <h2>PAYSLIP CALCULATOR</h2>
+    </div>
+    <div class="content">
+      <!-- Language Selector -->
+      <div class="field">
+        <label for="language-select">Language</label>
+        <select id="language-select">
+          <option value="ko">Korean</option>
+          <option value="fil">Filipino</option>
+          <option value="th">Thai</option>
+          <option value="vi">Vietnamese</option>
+          <option value="my">Myanmar</option>
+          <option value="km">Cambodian</option>
+          <option value="uz">Uzbek</option>
+          <option value="ru">Russian</option>
+          <option value="zh">Chinese</option>
+        </select>
+      </div>
+      <!-- Month Selector -->
+      <div class="field">
+        <label for="month-select">For the month of</label>
+        <select id="month-select">
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+      <!-- Base Pay -->
+      <div class="field">
+        <label for="base-pay">Base Pay (₩)</label>
+        <input type="number" id="base-pay" placeholder="₩0" value="10030" min="0" step="1">
+      </div>
+      <!-- Table -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Hours</th>
+              <th>Subtotal (₩)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="desc-day">주간 (Ca ngày)</td>
+              <td><input type="number" id="hrs-day" placeholder="0.0" value="0" min="0" step="0.5"></td>
+              <td><span id="sub-day">₩0.00</span></td>
+            </tr>
+            <tr>
+              <td id="desc-night">야간 (Ca đêm)</td>
+              <td><input type="number" id="hrs-night" placeholder="0.0" value="0" min="0" step="0.5"></td>
+              <td><span id="sub-night">₩0.00</span></td>
+            </tr>
+            <tr>
+              <td id="desc-paid">유급 (Giờ được trả lương)</td>
+              <td><input type="number" id="hrs-paid" placeholder="0.0" value="0" min="0" step="0.5"></td>
+              <td><span id="sub-paid">₩0.00</span></td>
+            </tr>
+            <tr>
+              <td id="desc-night-allow">야간 수당 (Phụ cấp ca đêm)</td>
+              <td><span id="hrs-night-allowance">0</span></td>
+              <td><span id="sub-night-allowance">₩0.00</span></td>
+            </tr>
+            <tr>
+              <td id="desc-ot">연장 근로 수당 (Làm thêm giờ)</td>
+              <td><input type="number" id="hrs-ot" placeholder="0.0" value="0" min="0" step="0.5"></td>
+              <td><span id="sub-ot">₩0.00</span></td>
+            </tr>
+            <tr>
+              <td id="desc-weekend">특근 수당 (Ca cuối tuần)</td>
+              <td><input type="number" id="hrs-weekend" placeholder="0.0" value="0" min="0" step="0.5"></td>
+              <td><span id="sub-weekend">₩0.00</span></td>
+            </tr>
+            <tr>
+              <td id="desc-parking">주차 수당 (Phụ cấp đỗ xe)</td>
+              <td><input type="number" id="hrs-parking" placeholder="0.0" value="0" min="0" step="0.5"></td>
+              <td><span id="sub-parking">₩0.00</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">GROSS PAY</td>
+              <td><span id="gross-pay">₩0.00</span></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="export-btn">Export to PDF</button>
+    </div>
+    <div class="footer">Created by: RICHARD CANAPI</div>
+  </div>
+  <script>
+    const languageSelect=document.getElementById('language-select');
+    const monthSelect=document.getElementById('month-select');
+    const basePayInput=document.getElementById('base-pay');
+    const hrsDay=document.getElementById('hrs-day');
+    const hrsNight=document.getElementById('hrs-night');
+    const hrsPaid=document.getElementById('hrs-paid');
+    const hrsOT=document.getElementById('hrs-ot');
+    const hrsWeekend=document.getElementById('hrs-weekend');
+    const hrsParking=document.getElementById('hrs-parking');
+    const hrsNightAllow=document.getElementById('hrs-night-allowance');
+    const subDay=document.getElementById('sub-day');
+    const subNight=document.getElementById('sub-night');
+    const subPaid=document.getElementById('sub-paid');
+    const subNightAl=document.getElementById('sub-night-allowance');
+    const subOT=document.getElementById('sub-ot');
+    const subWeekend=document.getElementById('sub-weekend');
+    const subParking=document.getElementById('sub-parking');
+    const grossPay=document.getElementById('gross-pay');
+    const exportBtn=document.getElementById('export-btn');
+    const descMap={
+      'desc-day':{en:'Dayshift',ko:'주간',fil:'Araw',th:'กะเช้า',vi:'Ca ngày',my:'နေ့အလုပ်',km:'ការងារពាក់កណ្តាលថ្ងៃ',uz:'Kunlik smena',ru:'Дневная смена',zh:'日班'},
+      'desc-night':{en:'Night Shift',ko:'야간',fil:'Gabi',th:'กะกลางคืน',vi:'Ca đêm',my:'ညအလုပ်',km:'ការងារពាក់កណ្តាលយប់',uz:'Tun smenasi',ru:'Ночная смена',zh:'夜班'},
+      'desc-paid':{en:'Paid Hours',ko:'유급',fil:'Bayad na Oras',th:'ชั่วโมงชำระเงิน',vi:'Giờ được trả lương',my:'လစာရအလုပ်နာရီ',km:'ម៉ោងដែលបានប្រាក់ឈ្នួល',uz:'To‘lanadigan soatlar',ru:'Оплачиваемые часы',zh:'带薪工时'},
+      'desc-night-allow':{en:'Night Allowance',ko:'야간 수당',fil:'Bayad Gabi',th:'เบี้ยกลางคืน',vi:'Phụ cấp ca đêm',my:'ညအလုပ်ကြေး',km:'អប្បបរមា​​យប់',uz:'Tun uchun qo‘shimcha haq',ru:'Надбавка за ночную смену',zh:'夜班津贴'},
+      'desc-ot':{en:'OT',ko:'연장 근로 수당',fil:'Bayad Overtime',th:'เบี้ย OT',vi:'Làm thêm giờ',my:'အချိန်ပိုအလုပ်',km:'ប្រាក់លើកាដំណើរការ',uz:'Qo‘shimcha ish soatlari',ru:'Сверхурочные',zh:'加班费'},
+      'desc-weekend':{en:'Weekend Duty',ko:'특근 수당',fil:'Bayad Araw ng Linggo',th:'เบี้ยวันหยุดสุดสัปดาห์',vi:'Ca cuối tuần',my:'အပတ်စဉ်ကုန်တာဝန်',km:'កាតុតិយភ័ណ្ឌចុងសប្ដាហ៍',uz:'Haftalik dam olish kuni smenasi',ru:'Выходная смена',zh:'周末值班'},
+      'desc-parking':{en:'Parking Allowance',ko:'주차 수당',fil:'Bayad Parking',th:'เบี้ยจอดรถ',vi:'Phụ cấp đỗ xe',my:'ယာဉ်ရပ်နားခွန်',km:'ប្រាក់ជំនួយចត',uz:'Avtoturna to‘lovi',ru:'Плата за парковку',zh:'停车补贴'}
+    };
+    (function initDefaults(){languageSelect.value='ko';const now=new Date(),prev=new Date(now.getFullYear(),now.getMonth()-1);monthSelect.value=String(prev.getMonth()+1);updateLanguage();calc();})();
+    function updateLanguage(){const lang=languageSelect.value;Object.keys(descMap).forEach(id=>{const info=descMap[id];document.getElementById(id).textContent=info[lang]+' ('+info.en+')';});}
+    function formatKRW(v){return'₩'+Number(v).toLocaleString('ko-KR',{minimumFractionDigits:2});}
+    function calc(){const bp=parseFloat(basePayInput.value)||0,d=parseFloat(hrsDay.value)||0,n=parseFloat(hrsNight.value)||0,p=parseFloat(hrsPaid.value)||0,o=parseFloat(hrsOT.value)||0,w=parseFloat(hrsWeekend.value)||0,k=parseFloat(hrsParking.value)||0,sd=d*bp,sn=n*bp,sp=p*bp,sna=n*bp*0.5,so=o*bp*1.5,sw=w*bp*1.5,sk=k*bp;hrsNightAllow.textContent=n;subDay.textContent=formatKRW(sd);subNight.textContent=formatKRW(sn);subPaid.textContent=formatKRW(sp);subNightAl.textContent=formatKRW(sna);subOT.textContent=formatKRW(so);subWeekend.textContent=formatKRW(sw);subParking.textContent=formatKRW(sk);grossPay.textContent=formatKRW(sd+sn+sp+sna+so+sw+sk);}    
+    languageSelect.addEventListener('change',()=>{updateLanguage();calc();});
+    [monthSelect,basePayInput,hrsDay,hrsNight,hrsPaid,hrsOT,hrsWeekend,hrsParking].forEach(el=>el.addEventListener('input',calc));
+    exportBtn.addEventListener('click',()=>window.print());
+  </script>
+</body>
+</html>
