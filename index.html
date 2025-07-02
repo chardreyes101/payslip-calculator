@@ -228,7 +228,7 @@
             <tr><td id="desc-night-allow">야간 수당 (Night Allowance)</td><td><span id="hrs-night-allowance">0</span></td><td><span id="sub-night-allowance">₩0.00</span></td></tr>
             <tr><td id="desc-ot">연장 근로 수당 (OT)</td><td><input type="number" id="hrs-ot" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-ot">₩0.00</span></td></tr>
             <tr><td id="desc-weekend">특근 수당 (Weekend Duty)</td><td><input type="number" id="hrs-weekend" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-weekend">₩0.00</span></td></tr>
-            <tr><td id="desc-parking">주차 수당 (Weekday Holiday Allowance)</td><td><input type="number" id="hrs-parking" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-parking">₩0.00</span></td></tr>
+            <tr><td id="desc-parking">주차 수당 (Holiday Weekend Allowance)</td><td><input type="number" id="hrs-parking" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-parking">₩0.00</span></td></tr>
           </tbody>
           <tfoot>
             <tr><td colspan="2">GROSS PAY</td><td><span id="gross-pay">₩0.00</span></td></tr>
@@ -262,19 +262,21 @@
     const grossPay = document.getElementById('gross-pay');
     const exportBtn = document.getElementById('export-btn');
     const descMap = {
-      'desc-day': { en: 'Dayshift', ko: '주간', fil: 'Araw', th: 'กะเช้า', vi: 'Ca ngày', my: 'နေ့အလုပ်', km: 'ការងារពាក់កណ្តាលថ្ងៃ', uz: 'Kunlik smena', ru: 'Дневная смена', zh: '日班' },
-      'desc-night': { en: 'Night Shift', ko: '야간', fil: 'Gabi', th: 'กะกลางคืน', vi: 'Ca đêm', my: 'ညအလုပ်', km: 'ការងារពាក់កណ្តាលយប់', uz: 'Tun smenasi', ru: 'Ночная смена', zh: '夜班' },
-      'desc-paid': { en: 'Paid Hours', ko: '유급', fil: 'Bayad na Oras', th: 'ชั่วโมงชำระเงิน', vi: 'Giờ được trả lương', my: 'လsalary', km: 'ម៉ោងដែលបានប្រាក់ឈ្នួល', uz: 'To‘lanadigan soatlar', ru: 'Оплачиваемые часы', zh: '带薪工时' },
-      'desc-night-allow': { en: 'Night Allowance', ko: '야간 수당', fil: 'Bayad Gabi', th: 'เบี้ยกลางคืน', vi: 'Phụ cấp ca đêm', my: 'ညအလုပ်ကြေး', km: 'អប្បបរមា​​យប់', uz: 'Tun uchun qo‘shimча haq', ru: 'Надбавка за ночную смену', zh: '夜班津贴' },
-      'desc-ot': { en: 'OT', ko: '연장 근로 수당', fil: 'Bayad Overtime', th: 'เบี้ย OT', vi: 'Làm thêm giờ', my: 'အချိန်ပိုအလုပ်', km: 'ប្រាក់លើកាដំណើរការ', uz: 'Qo‘shimcha ish soatlari', ru: 'Сверхурочные', zh: '加班费' },
-      'desc-weekend': { en: 'Weekend Duty', ko: '특근 수당', fil: 'Bayad Araw ng Linggo', th: 'เบี้ยวันหยุดสุดสัปดาห์', vi: 'Ca cuối tuần', my: 'အပတ်စဉ်ကုန်တာဝန်', km: 'កាតុតិយភ័ណ្ឌចុងសប្ដាហ៍', uz: 'Haftalik dam olish smenasi', ru: 'Выходная смена', zh: '周末值班' },
-      'desc-parking': { en: '', ko: '주차 수당', fil: 'Bayad sa Day-Off', th: 'เบี้ยจอดรถ', vi: 'Phụ cấp đỗ xe', my: 'ယာဉ်ရပ်နားခွန်', km: 'ប្រាក់ជំនួយចត', uz: 'Avtoturna to‘lovi', ru: 'Плата за парковку', zh: '停车补贴' }
+      'desc-day':    { en:'Dayshift', ko:'주간', fil:'Araw', th:'กะเช้า', vi:'Ca ngày', my:'နေ့အလုပ်', km:'ការងារពាក់កណ្តាលថ្ងៃ', uz:'Kunlik smena', ru:'Дневная смена', zh:'日班' },
+      'desc-night':  { en:'Night Shift', ko:'야간', fil:'Gabi', th:'กะกลางคืน', vi:'Ca đêm', my:'ညအလုပ်', km:'ការងារពាក់កណ្តាលយប់', uz:'Tun smenasi', ru:'Ночная смена', zh:'夜班' },
+      'desc-paid':   { en:'Paid Hours', ko:'유급', fil:'Bayad na Oras', th:'ชั่วโมงชำระเงิน', vi:'Giờ được trả lương', my:'လစာရအလုပ်နာရီ', km:'ម៉ោងដែលបានប្រាក់ឈ្នួល', uz:'To‘lanadigan soatlar', ru:'Оплачиваемые часы', zh:'带薪工时' },
+      'desc-night-allow': { en:'Night Allowance', ko:'야간 수당', fil:'Bayad Gabi', th:'เบี้ยกลางคืน', vi:'Phụ cấp ca đêm', my:'ညအလုပ်ကြေး', km:'អប្បបរមា​​យប់', uz:'Tun uchun qo‘shimча haq', ru:'Надбавка за ночную смену', zh:'夜班津贴' },
+      'desc-ot':     { en:'OT', ko:'연장 근로 수당', fil:'Bayad Overtime', th:'เบี้ย OT', vi:'Làm thêm giờ', my:'အချိန်ပိုအလုပ်', km:'ប្រាក់លើកាដំណើរការ', uz:'Qo‘shimча ish soatlari', ru:'Сверхурочные', zh:'加班费' },
+      'desc-weekend':{ en:'Weekend Duty', ko:'특근 수당', fil:'Bayad Araw ng Linggo', th:'เบี้ยวันหยุดสุดสัปดาห์', vi:'Ca cuối tuần', my:'အပတ်စဉ်ကုန်တာဝန်', km:'កាតុតិយភ័ណ្ឌចុងសប្ដាហ៍', uz:'Haftalik dam olish smenasi', ru:'Выходная смена', zh:'周末值班' },
+      'desc-parking':{ en:'Holiday Weekend Allowance', ko:'주차 수당', fil:'Bayad sa Holiday Weekend', th:'เบี้ยวันหยุดสุดสัปดาห์', vi:'Phụ cấp cuối tuần lễ hội', my:'အားခ ပိတ်ရက်နန်း', km:'ប្រាក់ជំនួយឈានពិធីបុណ្យសប្ដាហ៍', uz:'Bayram dam olish kuni to‘lovi', ru:'Пособие на праздничные выходные', zh:'假日周末津贴' }
     };
+
     function initDefaults() {
       languageSelect.value = 'ko';
       const now = new Date(), prev = new Date(now.getFullYear(), now.getMonth() - 1);
       monthSelect.value = String(prev.getMonth() + 1);
-      updateLanguage(); calc();
+      updateLanguage();
+      calc();
     }
     function updateLanguage() {
       const lang = languageSelect.value;
@@ -288,30 +290,33 @@
     }
     function calc() {
       const bp = parseFloat(basePayInput.value) || 0;
-      const d = parseFloat(hrsDay.value) || 0;
-      const n = parseFloat(hrsNight.value) || 0;
-      const p = parseFloat(hrsPaid.value) || 0;
-      const o = parseFloat(hrsOT.value) || 0;
-      const w = parseFloat(hrsWeekend.value) || 0;
-      const k = parseFloat(hrsParking.value) || 0;
+      const d  = parseFloat(hrsDay.value)      || 0;
+      const n  = parseFloat(hrsNight.value)    || 0;
+      const p  = parseFloat(hrsPaid.value)     || 0;
+      const o  = parseFloat(hrsOT.value)       || 0;
+      const w  = parseFloat(hrsWeekend.value)  || 0;
+      const k  = parseFloat(hrsParking.value)  || 0;
       const sd = d * bp, sn = n * bp, sp = p * bp;
-      const sna = n * bp * 0.5, so = o * bp * 1.5, sw = w * bp * 1.5, sk = k * bp;
+      const sna = n * bp * 0.5, so  = o * bp * 1.5, sw = w * bp * 1.5, sk = k * bp;
       hrsNightAllow.textContent = n;
-      subDay.textContent = formatKRW(sd);
-      subNight.textContent = formatKRW(sn);
-      subPaid.textContent = formatKRW(sp);
-      subNightAl.textContent = formatKRW(sna);
-      subOT.textContent = formatKRW(so);
-      subWeekend.textContent = formatKRW(sw);
-      subParking.textContent = formatKRW(sk);
-      grossPay.textContent = formatKRW(sd + sn + sp + sna + so + sw + sk);
+      subDay.textContent        = formatKRW(sd);
+      subNight.textContent      = formatKRW(sn);
+      subPaid.textContent       = formatKRW(sp);
+      subNightAl.textContent    = formatKRW(sna);
+      subOT.textContent         = formatKRW(so);
+      subWeekend.textContent    = formatKRW(sw);
+      subParking.textContent    = formatKRW(sk);
+      grossPay.textContent      = formatKRW(sd + sn + sp + sna + so + sw + sk);
     }
+
     document.addEventListener('DOMContentLoaded', initDefaults);
     languageSelect.addEventListener('change', () => { updateLanguage(); calc(); });
-    [monthSelect, basePayInput, hrsDay, hrsNight, hrsPaid, hrsOT, hrsWeekend, hrsParking].forEach(el => el.addEventListener('input', calc));
+    [ monthSelect, basePayInput, hrsDay, hrsNight, hrsPaid, hrsOT, hrsWeekend, hrsParking ]
+      .forEach(el => el.addEventListener('input', calc));
     exportBtn.addEventListener('click', () => window.print());
   </script>
 </body>
 </html>
+
 
 
