@@ -228,7 +228,7 @@
             <tr><td id="desc-night-allow">야간 수당 (Night Allowance)</td><td><span id="hrs-night-allowance">0</span></td><td><span id="sub-night-allowance">₩0.00</span></td></tr>
             <tr><td id="desc-ot">연장 근로 수당 (OT)</td><td><input type="number" id="hrs-ot" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-ot">₩0.00</span></td></tr>
             <tr><td id="desc-weekend">특근 수당 (Weekend Duty)</td><td><input type="number" id="hrs-weekend" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-weekend">₩0.00</span></td></tr>
-            <tr><td id="desc-parking">주차 수당 (Parking Allowance)</td><td><input type="number" id="hrs-parking" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-parking">₩0.00</span></td></tr>
+            <tr><td id="desc-parking">주차 수당 (Weekday Holiday Allowance)</td><td><input type="number" id="hrs-parking" placeholder="0.0" value="0" min="0" step="0.5"></td><td><span id="sub-parking">₩0.00</span></td></tr>
           </tbody>
           <tfoot>
             <tr><td colspan="2">GROSS PAY</td><td><span id="gross-pay">₩0.00</span></td></tr>
@@ -268,7 +268,7 @@
       'desc-night-allow': { en: 'Night Allowance', ko: '야간 수당', fil: 'Bayad Gabi', th: 'เบี้ยกลางคืน', vi: 'Phụ cấp ca đêm', my: 'ညအလုပ်ကြေး', km: 'អប្បបរមា​​យប់', uz: 'Tun uchun qo‘shimча haq', ru: 'Надбавка за ночную смену', zh: '夜班津贴' },
       'desc-ot': { en: 'OT', ko: '연장 근로 수당', fil: 'Bayad Overtime', th: 'เบี้ย OT', vi: 'Làm thêm giờ', my: 'အချိန်ပိုအလုပ်', km: 'ប្រាក់លើកាដំណើរការ', uz: 'Qo‘shimcha ish soatlari', ru: 'Сверхурочные', zh: '加班费' },
       'desc-weekend': { en: 'Weekend Duty', ko: '특근 수당', fil: 'Bayad Araw ng Linggo', th: 'เบี้ยวันหยุดสุดสัปดาห์', vi: 'Ca cuối tuần', my: 'အပတ်စဉ်ကုန်တာဝန်', km: 'កាតុតិយភ័ណ្ឌចុងសប្ដាហ៍', uz: 'Haftalik dam olish smenasi', ru: 'Выходная смена', zh: '周末值班' },
-      'desc-parking': { en: 'Parking Allowance', ko: '주차 수당', fil: 'Bayad Parking', th: 'เบี้ยจอดรถ', vi: 'Phụ cấp đỗ xe', my: 'ယာဉ်ရပ်နားခွန်', km: 'ប្រាក់ជំនួយចត', uz: 'Avtoturna to‘lovi', ru: 'Плата за парковку', zh: '停车补贴' }
+      'desc-parking': { en: '', ko: '주차 수당', fil: 'Bayad sa Day-Off', th: 'เบี้ยจอดรถ', vi: 'Phụ cấp đỗ xe', my: 'ယာဉ်ရပ်နားခွန်', km: 'ប្រាក់ជំនួយចត', uz: 'Avtoturna to‘lovi', ru: 'Плата за парковку', zh: '停车补贴' }
     };
     function initDefaults() {
       languageSelect.value = 'ko';
